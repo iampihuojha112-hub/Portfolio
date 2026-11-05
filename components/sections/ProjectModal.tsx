@@ -48,7 +48,7 @@ export default function ProjectModal({ project, onClose }: { project: Project | 
           initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
           <motion.div ref={ref} role="dialog" aria-modal="true" aria-label={`${p.title} details`} onClick={(e) => e.stopPropagation()}
             initial={{ x: "100%" }} animate={{ x: 0 }} exit={{ x: "100%" }} transition={{ type: "spring", stiffness: 260, damping: 32 }}
-            className="h-full w-full max-w-2xl overflow-y-auto overscroll-contain border-l border-line bg-surface p-6 md:p-10" data-lenis-prevent>
+            className="h-full w-full max-w-5xl overflow-y-auto overscroll-contain border-l border-line bg-surface p-6 md:p-10" data-lenis-prevent>
             <div className="flex items-start justify-between gap-4">
               <div>
                 {p.category && <p className="eyebrow text-lav">{p.category}</p>}

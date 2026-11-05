@@ -5,6 +5,7 @@ import Lenis from "lenis";
 import gsap from "gsap";
 import { scrollState } from "@/lib/scroll-store";
 
+
 /** Lenis smooth scrolling (disabled for reduced motion) + a scroll-progress value for the 3D scene. */
 export default function SmoothScroll() {
   useEffect(() => {
