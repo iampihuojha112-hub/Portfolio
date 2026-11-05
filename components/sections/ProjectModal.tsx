@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import Img from "@/components/ui/Img";
 import { safeHref } from "@/lib/utils";
@@ -41,14 +42,14 @@ export default function ProjectModal({ project, onClose }: { project: Project | 
   const images = p ? [...(p.thumbnail_path ? [{ id: "thumb", path: p.thumbnail_path, caption: null as string | null }] : []), ...(p.project_images ?? [])] : [];
   const github = safeHref(p?.github_url), demo = safeHref(p?.demo_url);
 
-  return (
+  return typeof document === "undefined" ? null : createPortal(
     <AnimatePresence>
       {p && (
-        <motion.div className="fixed inset-0 z-[75] flex justify-end bg-ink/70 backdrop-blur-sm" onClick={onClose}
+        <motion.div className="fixed inset-0 z-[75] flex items-center justify-center bg-ink/70 p-4 backdrop-blur-sm md:p-6" onClick={onClose}
           initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
           <motion.div ref={ref} role="dialog" aria-modal="true" aria-label={`${p.title} details`} onClick={(e) => e.stopPropagation()}
-            initial={{ x: "100%" }} animate={{ x: 0 }} exit={{ x: "100%" }} transition={{ type: "spring", stiffness: 260, damping: 32 }}
-            className="h-full w-full max-w-5xl overflow-y-auto overscroll-contain border-l border-line bg-surface p-6 md:p-10" data-lenis-prevent>
+            initial={{ opacity: 0, y: 20, scale: 0.98 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 20, scale: 0.98 }} transition={{ type: "spring", stiffness: 260, damping: 32 }}
+            className="max-h-[90vh] w-full max-w-5xl overflow-y-auto overscroll-contain rounded-3xl border border-line bg-surface p-6 md:p-10" data-lenis-prevent>
             <div className="flex items-start justify-between gap-4">
               <div>
                 {p.category && <p className="eyebrow text-lav">{p.category}</p>}
@@ -98,6 +99,7 @@ export default function ProjectModal({ project, onClose }: { project: Project | 
           </motion.div>
         </motion.div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body
   );
 }
