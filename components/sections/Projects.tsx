@@ -16,7 +16,7 @@ function Visual({ p, className }: { p: Project; className?: string }) {
   return (
     <div className={cn("relative overflow-hidden rounded-2xl border border-line bg-raise", className)}>
       {path
-        ? <Img path={path} alt={`${p.title} preview`} sizes="(min-width: 1024px) 40vw, 90vw" className="transition-transform duration-700 group-hover:scale-[1.04]" />
+        ? <Img path={path} alt={`${p.title} preview`} sizes="(min-width: 1024px) 40vw, 90vw" fit="contain" className="transition-transform duration-700 group-hover:scale-[1.04]" />
         : <div className="grid size-full place-items-center bg-[radial-gradient(circle_at_25%_20%,#2a2450,#12121a_65%)]"><span className="font-display text-7xl font-light text-lav/70">{p.title.slice(0, 1)}</span></div>}
     </div>
   );
@@ -68,7 +68,7 @@ export default function Projects({ projects }: { projects: Project[] }) {
                     >
                       <Visual
                         p={p}
-                        className="aspect-[16/11] w-full"
+                        className="aspect-[16/9] w-full"
                       />
                     </button>
                   </Tilt>
