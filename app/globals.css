@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #09090d;
+  --color-surface: #101016;
+  --color-raise: #16161e;
+  --color-line: #262632;
+  --color-fg: #ecebf4;
+  --color-mute: #9a98ad;
+  --color-lav: #b9aaff;
+  --color-blue: #5b8cff;
+  --color-cream: #efe8dc;
+  --color-cocoa: #2b2420;
+  --color-clay: #b5532f;
+  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+}
+
+html { background: var(--color-ink); color-scheme: dark; -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--color-ink); color: var(--color-fg);
+  font-family: var(--font-sans); line-height: 1.65; overflow-x: hidden;
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+}
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+::selection { background: color-mix(in oklab, var(--color-lav) 40%, transparent); color: #fff; }
+:focus-visible { outline: 2px solid var(--color-lav); outline-offset: 3px; border-radius: 6px; }
+
+.font-display { font-family: var(--font-display); font-optical-sizing: auto; }
+.eyebrow { font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--color-mute); }
+.hairline { border: 1px solid var(--color-line); }
+.container-x { width: min(100% - 2.5rem, 76rem); margin-inline: auto; }
+.section-pad { padding-block: clamp(5rem, 11vw, 9.5rem); }
+.text-balance { text-wrap: balance; }
+.text-pretty { text-wrap: pretty; }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .55rem;
+  min-height: 2.75rem; padding: .65rem 1.25rem; border-radius: 999px; font-weight: 600; font-size: .9rem;
+  border: 1px solid var(--color-line); color: var(--color-fg); background: transparent;
+  transition: transform .25s ease, background-color .25s ease, border-color .25s ease, color .25s ease;
+}
+.btn:hover { border-color: var(--color-lav); background: color-mix(in oklab, var(--color-lav) 10%, transparent); transform: translateY(-1px); }
+.btn-solid { background: var(--color-fg); color: var(--color-ink); border-color: var(--color-fg); }
+.btn-solid:hover { background: var(--color-lav); border-color: var(--color-lav); color: var(--color-ink); }
+
+.chip {
+  display: inline-flex; align-items: center; gap: .45rem; padding: .3rem .75rem; border-radius: 999px;
+  font-size: .8rem; border: 1px solid var(--color-line); color: var(--color-fg); background: color-mix(in oklab, var(--color-raise) 80%, transparent);
+}
+
+/* Subtle film grain to keep large dark areas from looking flat */
+.grain::after {
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 60; opacity: .035; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+/* Admin form controls */
+.field {
+  width: 100%; background: var(--color-surface); border: 1px solid var(--color-line); border-radius: .6rem;
+  padding: .6rem .8rem; color: var(--color-fg); font: inherit; min-height: 2.6rem;
+}
+.field:focus { border-color: var(--color-lav); outline: none; box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-lav) 25%, transparent); }
+textarea.field { min-height: 6.5rem; resize: vertical; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
+}
