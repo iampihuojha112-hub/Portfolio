@@ -6,10 +6,10 @@ import SectionHeading from "@/components/ui/SectionHeading";
 import { submitContact, type ContactState } from "@/lib/actions/contact";
 import { safeHref } from "@/lib/utils";
 
-interface Props { name: string; email: string | null; github: string | null; linkedin: string | null; hasResume: boolean }
+interface Props { name: string; email: string | null; github: string | null; linkedin: string | null; leetcode: string | null; hasResume: boolean }
 const initial: ContactState = { ok: false };
 
-export default function Contact({ name, email, github, linkedin, hasResume }: Props) {
+export default function Contact({ name, email, github, linkedin, leetcode, hasResume }: Props) {
   const [state, action, pending] = useActionState(submitContact, initial);
   const [openedAt, setOpenedAt] = useState("0");
   useEffect(() => setOpenedAt(String(Date.now())), []);
@@ -27,6 +27,7 @@ export default function Contact({ name, email, github, linkedin, hasResume }: Pr
               {mail && <a className="btn btn-solid" href={mail}>{email}</a>}
               {github && <a className="btn" href={github} target="_blank" rel="noopener noreferrer">GitHub ↗</a>}
               {linkedin && <a className="btn" href={linkedin} target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>}
+              {leetcode && <a className="btn" href={leetcode} target="_blank" rel="noopener noreferrer">LeetCode ↗</a>}
               {hasResume && <a className="btn" href="/resume" target="_blank" rel="noopener noreferrer">Download Resume</a>}
             </div>
           </Reveal>

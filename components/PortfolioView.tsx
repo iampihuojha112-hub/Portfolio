@@ -22,6 +22,7 @@ export default function PortfolioView({ data }: { data: PortfolioData }) {
   const { profile } = data;
   const github = safeHref(findSocial(data.socialLinks, "github")?.url);
   const linkedin = safeHref(findSocial(data.socialLinks, "linkedin")?.url);
+  const leetcode = safeHref(findSocial(data.socialLinks, "leetcode")?.url);
   const emailLink = findSocial(data.socialLinks, "mail")?.url.replace(/^mailto:/i, "") ?? null;
   const email = profile.email ?? emailLink;
   const hasResume = !!data.resumePath;
@@ -46,7 +47,7 @@ export default function PortfolioView({ data }: { data: PortfolioData }) {
       <SceneCanvas />
       <Nav items={nav} />
       <main className="relative z-10">
-        <Hero profile={profile} github={github} linkedin={linkedin} hasResume={hasResume} />
+        <Hero profile={profile} github={github} linkedin={linkedin} leetcode={leetcode} hasResume={hasResume} />
         <About profile={profile} />
         {show.education && <EducationSection items={data.education} />}
         {show.skills && <Skills categories={data.skillCategories} />}
@@ -54,7 +55,7 @@ export default function PortfolioView({ data }: { data: PortfolioData }) {
         {show.hackathons && <Hackathons items={data.hackathons} />}
         {show.certifications && <Certifications items={data.certifications} />}
         {show.beyond && <BeyondCoding items={data.interests} />}
-        <Contact name={profile.name} email={email} github={github} linkedin={linkedin} hasResume={hasResume} />
+        <Contact name={profile.name} email={email} github={github} linkedin={linkedin} leetcode={leetcode} hasResume={hasResume} />
       </main>
       <BackToTop />
     </div>

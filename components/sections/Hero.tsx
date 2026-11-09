@@ -5,9 +5,9 @@ import gsap from "gsap";
 import { scrollToId } from "@/lib/scroll-store";
 import type { Profile } from "@/types";
 
-interface Props { profile: Profile; github: string | null; linkedin: string | null; hasResume: boolean }
+interface Props { profile: Profile; github: string | null; linkedin: string | null; leetcode: string | null; hasResume: boolean }
 
-export default function Hero({ profile, github, linkedin, hasResume }: Props) {
+export default function Hero({ profile, github, linkedin, leetcode, hasResume }: Props) {
   const root = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -38,6 +38,7 @@ export default function Hero({ profile, github, linkedin, hasResume }: Props) {
           {hasResume && <a className="btn btn-solid" href="/resume" target="_blank" rel="noopener noreferrer">Download Resume</a>}
           {github && <a className="btn" href={github} target="_blank" rel="noopener noreferrer">GitHub ↗</a>}
           {linkedin && <a className="btn" href={linkedin} target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>}
+          {leetcode && <a className="btn" href={leetcode} target="_blank" rel="noopener noreferrer">LeetCode ↗</a>}
         </div>
       </div>
       <button type="button" onClick={() => scrollToId("about")} aria-label="Scroll to About"
