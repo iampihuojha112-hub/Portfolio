@@ -68,7 +68,6 @@ export default function Contact({ name, email, github, linkedin, leetcode, hasRe
       </div>
       <footer className="container-x mt-24 flex flex-wrap items-center justify-between gap-3 border-t border-line pt-6 text-sm text-mute">
         <p>© {new Date().getFullYear()} {name}</p>
-        <p>Built with Next.js, Three.js and Supabase.</p>
       </footer>
     </section>
   );
